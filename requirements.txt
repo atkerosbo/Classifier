@@ -71,8 +71,5 @@ taipy-rest==3.0.0
 taipy-templates==3.0.0
 tblib==3.0.0
 tensorboard==2.14.1
-tensorboard-data-server==0.7.2
 tensorflow
-tensorflow-intel==2.14.0
-tensorflow-io-gcs-filesystem==0.31.0
 
