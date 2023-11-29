@@ -1,14 +1,20 @@
-FROM python:3.10.13-bookworm
+FROM python:3.9-slim as compiler
+ENV PYTHONUNBUFFERED 1
 
-WORKDIR /app
+WORKDIR /app/
 
-COPY requirements.txt .
+RUN python -m venv /opt/venv
+# Enable venv
+ENV PATH="/opt/venv/bin:$PATH"
 
-RUN python -m venv env && \
-    . env/bin/activate && \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+COPY ./requirements.txt /app/requirements.txt
+RUN pip install -Ur requirements.txt
 
-COPY . .
+FROM python:3.9-slim as runner
+WORKDIR /app/
+COPY --from=compiler /opt/venv /opt/venv
 
-CMD [ "python", "./classifier.py" ]
+# Enable venv
+ENV PATH="/opt/venv/bin:$PATH"
+COPY . /app/
+CMD ["python", "classifier.py", ]
