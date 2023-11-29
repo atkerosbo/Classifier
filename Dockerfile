@@ -5,4 +5,4 @@ WORKDIR /app/
 COPY ./requirements.txt /app/requirements.txt
 RUN pip install -Ur requirements.txt
 
-CMD ["python", "classifier.py", ]
+CMD ["python", app, ]
