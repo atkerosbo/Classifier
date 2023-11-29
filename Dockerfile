@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.10.13-bookworm
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ RUN python -m venv env && \
 
 COPY . .
 
-CMD [ "python", "./your_script.py" ]
+CMD [ "python", "./classifier.py" ]
